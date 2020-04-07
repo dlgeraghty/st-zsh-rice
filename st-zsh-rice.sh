@@ -6,29 +6,32 @@ cd
 cd st-zsh-rice &&
 sudo mkdir /usr/local/share/fonts/misc
 sudo cp IosevkaNerdFontComplete.ttf /usr/local/share/fonts/misc/ &&
-fc-cache -f -v &&
+fc-cache &&
 [ $(fc-list | grep "Iosevka Nerd" | wc -l) -lt 1 ] && echo "Nerd Font installed Correctly" &&
 sudo apt-get install fonts-inconsolata -y || sudo pacman -S ttf-inconsolata
 
 #zsh:
 sudo pacman -S zsh -y || sudo apt install zsh -y ;
-	chsh -s /bin/zsh $(whoami) &&
+[ "$SHELL" != "/bin/zsh" ] && chsh -s /bin/zsh $(whoami) &&
 cd &&
-[ $(ls ~/.zshrc) | wc-l ) -lt 0 ] && mv ~/.zshrc ~/.zshrc.old
-cp st-zsh-rice/.zshrc ~/ &&
-mkdir /usr/share/zsh ;
-mkdir /usr/share/zsh/plugins ;
-cd /usr/share/zsh/plugins &&
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git &&
+[ $(ls ~/.zshrc | wc -l) -lt 0 ] && mv ~/.zshrc ~/.zshrc.old
+cp st-zsh-rice/.zshrc ~/ ;
+[ $(ls /usr/share/ | grep "zsh" | wc -l) -eq 0 ] && sudo mkdir /usr/share/zsh 
+[ $(ls /usr/share/zsh/ | grep "plugins" | wc -l) -eq 0] && sudo mkdir /usr/share/zsh/plugins 
+cd /usr/share/zsh/plugins ;
+	[ $(ls | grep "zsh-syntax-highlighting" | wc -l) -eq 0 ] && sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git 
 cd &&
+
 
 #st:
-git clone https://github.com/LukeSmithxyz/st &&
-cd st &&
-sudo make install &&
-cd .local/src/st.git/st.git &&
-mv config.h config.old.h
-cp ~/st-zsh-rice/config.h .
-sudo make install &&
 
-sudo rm -r ~/st-zsh-rice/
+wget https://dl.suckless.org/st/st-0.8.2.tar.gz &&
+tar -xvf st-0.8.2.tar.gz && 
+cd st-0.8.2 &&
+cd &&
+cd st-zsh-rice  &&
+cp config.h ../st-0.8.2/ &&
+cd ~/st-0.8.2/
+sudo make install
+
+
