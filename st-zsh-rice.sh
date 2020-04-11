@@ -32,6 +32,8 @@ cd &&
 cd st-zsh-rice  &&
 cp config.h ../st-0.8.2/ &&
 cd ~/st-0.8.2/
+patch -p1 < ~/st-zsh-rice/set-alpha-0.8.2.diff
+patch -p1 < ~/st-zsh-rice/xresources.diff
 sudo make install
 
 
