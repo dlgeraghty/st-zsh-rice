@@ -37,6 +37,7 @@ sudo make install
 
 #set transparency via the .Xresources file, the example that will be copied is the Xdefaults file present in this repo :) you can then change some values as color, transparency level (0-1), fonts...and issue xrdb file to make it change
 
+#note that yoy need a compositor as xcompmgr for transparency to work
 cp ~/st-zsh-rice/Xdefaults ~/
 mv ~/Xdefaults ~/.Xresources
 xrdb ~/.Xresources
