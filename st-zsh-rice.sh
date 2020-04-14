@@ -15,17 +15,17 @@ sudo pacman -S zsh -y || sudo apt install zsh -y ;
 [ "$SHELL" != "/bin/zsh" ] && chsh -s /bin/zsh $(whoami) &&
 cd &&
 [ $(ls ~/.zshrc | wc -l) -lt 0 ] && mv ~/.zshrc ~/.zshrc.old
-cp st-zsh-rice/.zshrc ~/ ;
-[ $(ls /usr/share/ | grep "zsh" | wc -l) -eq 0 ] && sudo mkdir /usr/share/zsh 
-[ $(ls /usr/share/zsh/ | grep "plugins" | wc -l) -eq 0] && sudo mkdir /usr/share/zsh/plugins 
+cp st-zsh-rice/zshrc ~/.zshrc ;
+[ $(ls /usr/share/ | grep "zsh" | wc -l) -eq 0 ] && sudo mkdir /usr/share/zsh
+[ $(ls /usr/share/zsh/ | grep "plugins" | wc -l) -eq 0] && sudo mkdir /usr/share/zsh/plugins
 cd /usr/share/zsh/plugins ;
-	[ $(ls | grep "zsh-syntax-highlighting" | wc -l) -eq 0 ] && sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git 
+	[ $(ls | grep "zsh-syntax-highlighting" | wc -l) -eq 0 ] && sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 cd &&
 
 #st:
 
 wget https://dl.suckless.org/st/st-0.8.2.tar.gz &&
-tar -xvf st-0.8.2.tar.gz && 
+tar -xvf st-0.8.2.tar.gz &&
 cd st-0.8.2 &&
 cd &&
 cd st-zsh-rice  &&
