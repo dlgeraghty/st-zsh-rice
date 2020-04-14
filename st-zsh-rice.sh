@@ -22,7 +22,6 @@ cd /usr/share/zsh/plugins ;
 	[ $(ls | grep "zsh-syntax-highlighting" | wc -l) -eq 0 ] && sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git 
 cd &&
 
-
 #st:
 
 wget https://dl.suckless.org/st/st-0.8.2.tar.gz &&
@@ -32,6 +31,15 @@ cd &&
 cd st-zsh-rice  &&
 cp config.h ../st-0.8.2/ &&
 cd ~/st-0.8.2/
+patch -p1 < ~/st-zsh-rice/set-alpha-0.8.2.diff
+patch -p1 < ~/st-zsh-rice/xresources.diff
 sudo make install
+
+#set transparency via the .Xresources file, the example that will be copied is the Xdefaults file present in this repo :) you can then change some values as color, transparency level (0-1), fonts...and issue xrdb file to make it change
+
+#note that yoy need a compositor as xcompmgr for transparency to work
+cp ~/st-zsh-rice/Xdefaults ~/
+mv ~/Xdefaults ~/.Xresources
+xrdb ~/.Xresources
 
 
